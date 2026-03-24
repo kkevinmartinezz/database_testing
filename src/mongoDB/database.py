@@ -1,6 +1,24 @@
 import pymongo #need in order to use mongodb
+from pymongo.errors import ConnectionFailure
 
+# Simple connection
 myClient = pymongo.MongoClient('mongodb://localhost:27017/') #create a mongo client object
+
+# # Connection with authentication
+# myClient = pymongo.MongoClient(
+#     'mongodb://username:password@localhost:27017/mydb?authSource=admin'
+# )
+#
+# # MongoDB Atlas connection
+# myClient = pymongo.MongoClient(
+#     'mongodb+srv://username:password@cluster.mongodb.net/mydb?retryWrites=true&w=majority'
+# )
+
+try:
+    myClient.admin.command('ping')
+    print("Connected successfully!")
+except ConnectionFailure:
+    print("Connection failed")
 
 print(myClient)
 
