@@ -27,11 +27,20 @@ collection = mydb['collection']
 
 #Now we will add content to collection
 #documents are same as records in SQL
-mydict = {"name": "John", "age": 25}
-x = collection.insert_one(mydict)
-print(x.inserted_id) #inserted_id will return the unique _id of a document inserted by insert_one()
+#Will comment following 3 lines out so they don't keep getting added everytime I run to test file
+# mydict = {"name": "Matt", "age": 16}
+# x = collection.insert_one(mydict)
+# print(x.inserted_id) #inserted_id will return the unique _id of a document inserted by insert_one()
 
 
 
 print(myClient.list_database_names())
 print(mydb.list_collection_names())
+content = collection.find() #collection.find() returns a cursor, must loop through to get data
+print(list(content))
+
+single_content = collection.find_one({"name":"Matt"})
+print(type(single_content)) #returns data as a dict
+print(single_content)
+print(single_content["age"]) #how to get back a certain thing from the content if found.
+
