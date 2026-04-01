@@ -1,18 +1,13 @@
 import pymongo #need in order to use mongodb
 from pymongo.errors import ConnectionFailure
+import config #holds sensitive information in string that is used for connection
 
 # Simple connection
-myClient = pymongo.MongoClient('mongodb://localhost:27017/') #create a mongo client object
+# myClient = pymongo.MongoClient('mongodb://localhost:27017/') #create a mongo client object
 
-# # Connection with authentication
-# myClient = pymongo.MongoClient(
-#     'mongodb://username:password@localhost:27017/mydb?authSource=admin'
-# )
-#
-# # MongoDB Atlas connection
-# myClient = pymongo.MongoClient(
-#     'mongodb+srv://username:password@cluster.mongodb.net/mydb?retryWrites=true&w=majority'
-# )
+myClient = pymongo.MongoClient(config.connection_string) #create a mongo client object
+#connection_string is in following format:
+#   'mongodb+srv://<username>:<passwd>@<cluster name and stuff taken from MongoAtlasDB>'
 
 try:
     myClient.admin.command('ping')
@@ -20,7 +15,7 @@ try:
 except ConnectionFailure:
     print("Connection failed")
 
-print(myClient)
+# print(myClient)
 
 mydb = myClient['mydatabase'] #creating a database from the client established earlier
 # the database above will still not be ceeated UNTIL content is put inside it
@@ -38,5 +33,5 @@ print(x.inserted_id) #inserted_id will return the unique _id of a document inser
 
 
 
-# print(myClient.list_database_names())
-# print(mydb.list_collection_names())
+print(myClient.list_database_names())
+print(mydb.list_collection_names())

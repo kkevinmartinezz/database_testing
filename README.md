@@ -23,3 +23,7 @@ The installation of MoongoDB steps were primarily taken from [W3Schools MongoDB 
 ## Installing MongoDB Shell (mongosh)
 1. Following [official instructions](https://docs.mongodb.com/mongodb-shell/install/?utm_campaign=w3schools_mdb&utm_source=w3schools&utm_medium=referral) for downloading mongosh.
 2. Check using the following command in terminal: ```mongosh --version``` (if no version number appears fall back to step 1).
+
+
+## Additional installments
+1. May need to install dnspython if using the 'mongodb+srv://*' connection string method.
